@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "common.h"
+#include "lab1.h"
 
 void testOpenImage()
 {
@@ -410,6 +411,11 @@ int main()
 		printf(" 7 - Edges in a video sequence\n");
 		printf(" 8 - Snap frame from live video\n");
 		printf(" 9 - Mouse callback demo\n");
+		printf("10 - Negative image\n");
+		printf("11 - Additive factor\n");
+		printf("12 - Multiplicative factor\n");
+		printf("13 - Quarters image\n");
+		printf("14 - Inverse matrix\n");
 		printf(" 0 - Exit\n\n");
 		printf("Option: ");
 		scanf("%d",&op);
@@ -443,6 +449,27 @@ int main()
 			case 9:
 				testMouseClick();
 				break;
+			case 10:
+				negative_image();
+				break;
+			case 11: {
+				int factor;
+				printf("Additive factor is = ");
+				scanf("%d", &factor);
+				additive_factor(factor);
+				break;
+			}
+			case 12:
+				float factor;
+				printf("Multiplicative factor is = ");
+				scanf("%f", &factor);
+				multiplicative_factor(factor);
+				break;
+			case 13:
+				quarters_image();
+				break;
+			case 14:
+				inverse_matrix();
 		}
 	}
 	while (op!=0);
