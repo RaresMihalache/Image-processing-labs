@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "common.h"
 #include "lab1.h"
+#include "lab2.h"
 
 void testOpenImage()
 {
@@ -411,11 +412,16 @@ int main()
 		printf(" 7 - Edges in a video sequence\n");
 		printf(" 8 - Snap frame from live video\n");
 		printf(" 9 - Mouse callback demo\n");
+		// lab 1
 		printf("10 - Negative image\n");
 		printf("11 - Additive factor\n");
 		printf("12 - Multiplicative factor\n");
 		printf("13 - Quarters image\n");
 		printf("14 - Inverse matrix\n");
+		// lab 2
+		printf("15 - RGB to grayscale for each color channel\n");
+		printf("16 - RGB to grayscale\n");
+		printf("17 - Grayscale to binary\n");
 		printf(" 0 - Exit\n\n");
 		printf("Option: ");
 		scanf("%d",&op);
@@ -470,6 +476,19 @@ int main()
 				break;
 			case 14:
 				inverse_matrix();
+			case 15:
+				RGB2grayscale_each_channel();
+				break;
+			case 16:
+				RGB2grayscale();
+				break;
+			case 17:
+				int threshold;
+				printf("Threshold(0-255): ");
+				scanf("%d", &threshold);
+				printf("%d", threshold);
+				grayscale2binary(threshold);
+				break;
 		}
 	}
 	while (op!=0);
