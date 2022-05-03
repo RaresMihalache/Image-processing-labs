@@ -6,6 +6,7 @@
 #include "lab1.h"
 #include "lab2.h"
 #include "lab3.h"
+#include "lab5.h"
 
 void testOpenImage()
 {
@@ -429,6 +430,8 @@ int main()
 		printf("20 - Histogram\n");
 		printf("21 - FDP\n");
 		printf("22 - Histogram with acummulators\n");
+		// lab 5
+		printf("28 - BFS component labeling\n");
 		printf(" 0 - Exit\n\n");
 		printf("Option: ");
 		scanf("%d",&op);
@@ -529,6 +532,9 @@ int main()
 				scanf("%d", &m);
 				histogram_acumm(m);
 			}
+			case 28:
+				BFS_component_labeling(1);
+				break;
 		}
 	}
 	while (op!=0);
