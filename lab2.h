@@ -19,5 +19,8 @@ componente H, S, V. Memorare componente H, S, V în câte o matrice de tip CV_8U
 corespunzătoare canalelor H, S, V. Afișare matrice în 3 ferestre diferite. */
 void RGB2HSV_components();
 
-/* verificare daca pozitia indicata de (i,j) este in interiorul imaginii img. */
-bool isInside(Mat img, int i, int j);
+/* verificare daca pozitia indicata de (i,j) este in interiorul imaginii img. 
+0 -> nu se afla in imagine.
+1 -> se afla in imagine.
+*/
+int isInside(Mat img, int i, int j);

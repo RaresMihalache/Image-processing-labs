@@ -422,6 +422,8 @@ int main()
 		printf("15 - RGB to grayscale for each color channel\n");
 		printf("16 - RGB to grayscale\n");
 		printf("17 - Grayscale to binary\n");
+		printf("18 - RGB to HSV_components\n");
+		printf("19 - isInside(i,j)\n");
 		printf(" 0 - Exit\n\n");
 		printf("Option: ");
 		scanf("%d",&op);
@@ -489,6 +491,18 @@ int main()
 				printf("%d", threshold);
 				grayscale2binary(threshold);
 				break;
+			case 18:
+				RGB2HSV_components();
+			case 19:
+				int i;
+				int j;
+				printf("i = ");
+				scanf("%d", &i);
+				printf("j = ");
+				scanf("%d", &j);
+				Mat img = imread("Images/cameraman.bmp", -1);
+				printf("%d\n", isInside(img, i, j));
+				Sleep(1000);
 		}
 	}
 	while (op!=0);
