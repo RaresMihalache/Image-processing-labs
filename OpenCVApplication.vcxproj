@@ -98,6 +98,7 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="lab1.h" />
     <ClInclude Include="lab2.h" />
+    <ClInclude Include="lab3.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -105,6 +106,7 @@
     <ClCompile Include="common.cpp" />
     <ClCompile Include="lab1.cpp" />
     <ClCompile Include="lab2.cpp" />
+    <ClCompile Include="lab3.cpp" />
     <ClCompile Include="OpenCVApplication.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

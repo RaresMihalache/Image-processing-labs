@@ -5,6 +5,7 @@
 #include "common.h"
 #include "lab1.h"
 #include "lab2.h"
+#include "lab3.h"
 
 void testOpenImage()
 {
@@ -424,6 +425,10 @@ int main()
 		printf("17 - Grayscale to binary\n");
 		printf("18 - RGB to HSV_components\n");
 		printf("19 - isInside(i,j)\n");
+		// lab 3
+		printf("20 - Histogram\n");
+		printf("21 - FDP\n");
+		printf("22 - Histogram with acummulators\n");
 		printf(" 0 - Exit\n\n");
 		printf("Option: ");
 		scanf("%d",&op);
@@ -457,6 +462,8 @@ int main()
 			case 9:
 				testMouseClick();
 				break;
+			
+			// lab 1
 			case 10:
 				negative_image();
 				break;
@@ -478,6 +485,9 @@ int main()
 				break;
 			case 14:
 				inverse_matrix();
+				break;
+
+			// lab 2
 			case 15:
 				RGB2grayscale_each_channel();
 				break;
@@ -493,7 +503,8 @@ int main()
 				break;
 			case 18:
 				RGB2HSV_components();
-			case 19:
+				break;
+			case 19: {
 				int i;
 				int j;
 				printf("i = ");
@@ -503,6 +514,21 @@ int main()
 				Mat img = imread("Images/cameraman.bmp", -1);
 				printf("%d\n", isInside(img, i, j));
 				Sleep(1000);
+				break;
+			}
+			// lab 3
+			case 20:
+				histogram();
+				break;
+			case 21:
+				fdp();
+				break;
+			case 22: {
+				int m;
+				printf("Acummulators: ");
+				scanf("%d", &m);
+				histogram_acumm(m);
+			}
 		}
 	}
 	while (op!=0);
