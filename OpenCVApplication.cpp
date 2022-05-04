@@ -434,6 +434,7 @@ int main()
 		printf("28 - BFS component labeling\n");
 		printf("28 - DFS component labeling\n");
 		printf("30 - Colored labels\n");
+		printf("31 - Two pass labeling\n");
 		printf(" 0 - Exit\n\n");
 		printf("Option: ");
 		scanf("%d",&op);
@@ -547,6 +548,9 @@ int main()
 				colored_labels(img);
 				break;
 			}
+			case 31:
+				two_pass_labeling();
+				break;
 		}
 	}
 	while (op!=0);

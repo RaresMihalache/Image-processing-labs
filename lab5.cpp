@@ -7,6 +7,8 @@
 #include <stack>
 #include <random>
 
+void colored_labels(Mat labeled_image);
+
 Mat grayscale2binary(Mat img, int threshold) {
 
 	int height = img.rows;
@@ -178,6 +180,101 @@ Mat DFS_component_labeling(int neighbor_type) {
 		imshow("grayscale2binary", binary_image);
 		waitKey(0);
 		return labels;
+	}
+}
+
+void two_pass_labeling() {
+	
+	char fname[MAX_PATH];
+	while (openFileDlg(fname)) {
+		Mat src = imread(fname, IMREAD_GRAYSCALE);
+		int height = src.rows;
+		int width = src.cols;
+
+		Mat binary_image = grayscale2binary(src, 200);
+		Mat labels = Mat::zeros(height, width, CV_8UC1);
+		int label = 0;
+		std::vector<std::vector<uchar>> edges(1000);
+
+		int* di = (int*)calloc(4, sizeof(int));
+		int* dj = (int*)calloc(4, sizeof(int));
+		std::pair<int, int>* neighbors = (std::pair<int, int>*)calloc(4, sizeof(std::pair<int , int>));
+
+		di[0] = -1, dj[0] = -1;
+		di[1] = -1, dj[1] = 0;
+		di[2] = -1, dj[2] = 1;
+		di[3] = 0, dj[3] = -1;
+
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				if (binary_image.at<uchar>(i, j) == 0 && labels.at<uchar>(i, j) == 0) {
+					std::vector<uchar> L;
+					for (int k = 0; k < 4; k++) {
+						neighbors[k] = std::make_pair(i + di[k], j + dj[k]); // position of neighbors: (x, y) format: (
+						if (labels.at<uchar>(i + di[k], j + dj[k]) > 0) {
+							std::pair<int, int> x = std::make_pair(1, 2);
+							L.push_back(labels.at<uchar>(neighbors[k].first, neighbors[k].second));
+						}
+					}
+					if (L.size() == 0) { // assign new label
+						label++;
+						labels.at<uchar>(i, j) = label;
+					}
+					else {
+						uchar minim = 255;
+						for (int i = 0; i < L.size(); i++) {
+							minim = min(minim, L[i]);
+						}
+						
+						labels.at<uchar>(i, j) = minim;
+						for (int i = 0; i < L.size(); i++) {
+							if (L[i] != minim) {
+								edges[minim].push_back(L[i]);
+								edges[L[i]].push_back(minim);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// prima parcurgere:
+		//printf("Prima parcurgere\n");
+		colored_labels(labels);
+
+		int newlabel = 0;
+		int* newlabels = (int*)calloc(label + 1, sizeof(int));
+
+		for (int i = 1; i < label; i++) {
+			if (newlabels[i] == 0) {
+				newlabel++;
+				std::queue<int> Q;
+				newlabels[i] = newlabel;
+				Q.push(i);
+
+				while (!Q.empty()) {
+					int x = Q.front();
+					Q.pop();
+					for (int i = 0; i < edges[x].size(); i++) {
+						if (newlabels[i] == 0) {
+							newlabels[i] = newlabel;
+							Q.push(i);
+						}
+					}
+				}
+
+			}
+		}
+
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				labels.at<uchar>(i, j) = newlabels[labels.at<uchar>(i, j)];
+			}
+		}
+
+		//printf("A doua parcurgere.\n");
+		colored_labels(labels);
+
 	}
 }
 
