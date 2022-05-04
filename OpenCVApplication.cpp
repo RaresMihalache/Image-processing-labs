@@ -7,6 +7,7 @@
 #include "lab2.h"
 #include "lab3.h"
 #include "lab5.h"
+#include "lab6.h"
 
 void testOpenImage()
 {
@@ -435,6 +436,11 @@ int main()
 		printf("28 - DFS component labeling\n");
 		printf("30 - Colored labels\n");
 		printf("31 - Two pass labeling\n");
+		// lab 6
+		printf("32 - Border tracing\n");
+		printf("33 - Chain code\n");
+		printf("34 - Derivative chain code\n");
+		printf("35 - Border tracing, given chain code & derivative\n");
 		printf(" 0 - Exit\n\n");
 		printf("Option: ");
 		scanf("%d",&op);
@@ -550,6 +556,19 @@ int main()
 			}
 			case 31:
 				two_pass_labeling();
+				break;
+			// lab 6
+			case 32:
+				border_tracing();
+				break;
+			case 33:
+				//construct_chain_code();
+				break;
+			case 34:
+				//construct_derivative();
+				break;
+			case 35:
+				//construct_border()
 				break;
 		}
 	}
