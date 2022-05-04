@@ -432,6 +432,8 @@ int main()
 		printf("22 - Histogram with acummulators\n");
 		// lab 5
 		printf("28 - BFS component labeling\n");
+		printf("28 - DFS component labeling\n");
+		printf("30 - Colored labels\n");
 		printf(" 0 - Exit\n\n");
 		printf("Option: ");
 		scanf("%d",&op);
@@ -531,10 +533,20 @@ int main()
 				printf("Acummulators: ");
 				scanf("%d", &m);
 				histogram_acumm(m);
+				break;
 			}
+			// lab 5
 			case 28:
 				BFS_component_labeling(1);
 				break;
+			case 29:
+				DFS_component_labeling(1);
+				break;
+			case 30: {
+				Mat img = BFS_component_labeling(1);
+				colored_labels(img);
+				break;
+			}
 		}
 	}
 	while (op!=0);
