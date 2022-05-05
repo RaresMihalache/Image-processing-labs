@@ -447,9 +447,12 @@ int main()
 		printf("37 - Eroziune\n");
 		printf("38 - Deschidere\n");
 		printf("39 - Inchidere\n");
-		printf("40 - N times morphological\n");
-		printf("41 - Border tracing morphological\n");
-		printf("42 - Region filling algorithm\n");
+		printf("40 - N times dilatare\n");
+		printf("41 - N times eroziune\n");
+		printf("42 - N times deschidere\n");
+		printf("43 - N times inchidere\n");
+		printf("44 - Border tracing morphological\n");
+		printf("45 - Region filling morphological\n");
 		printf(" 0 - Exit\n\n");
 		printf("Option: ");
 		scanf("%d",&op);
@@ -587,12 +590,44 @@ int main()
 				eroziune();
 				break;
 			case 38:
+				deschidere();
 				break;
 			case 39:
+				inchidere();
 				break;
-			case 40:
+			case 40: {
+				int n;
+				printf("n = ");
+				scanf("%d", &n);
+				dilatare_n(n);
 				break;
-			case 41:
+			}
+			case 41: {
+				int n;
+				printf("n = ");
+				scanf("%d", &n);
+				eroziune_n(n);
+				break;
+			}
+			case 42: {
+				int n;
+				printf("n = ");
+				scanf("%d", &n);
+				deschidere_n(n);
+				break;
+			}
+			case 43: {
+				int n;
+				printf("n = ");
+				scanf("%d", &n);
+				inchidere_n(n);
+				break;
+			}
+			case 44:
+				border_tracing_morpho();
+				break;
+			case 45:
+				region_filling();
 				break;
 		}
 	}
